@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  vuln_scan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,8 +29,9 @@ jobs:
       - name: Run a one-line script
         run: ls -al
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Trivy Config scan
+      - name: Run Trivy vulnerability scanner in config mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: '.'
