@@ -25,10 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: ls -al
-
       # Trivy Config scan for Dockerfiles
       - name: Run Trivy vulnerability scanner in config mode
         uses: aquasecurity/trivy-action@master
@@ -36,6 +32,10 @@ jobs:
           scan-type: 'config'
           scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
+      # DEBUG
+      - name: Run a one-line script
+        run: ls -alh
+        
   jira-reporting:
     needs: vuln-scan
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
