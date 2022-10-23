@@ -36,7 +36,7 @@ jobs:
           scan-type: 'config'
           scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
-          
+  jira-reporting:
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
       # Jira Vuln Management Reporting
-      - name: Report vulns to Jira
-        uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+        
