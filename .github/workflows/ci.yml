@@ -29,10 +29,10 @@ jobs:
       - name: Run a one-line script
         run: ls -al
 
-      # Trivy Config scan
+      # Trivy Config scan for Dockerfiles
       - name: Run Trivy vulnerability scanner in config mode
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'config'
-          scan-ref: '.'
+          scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
