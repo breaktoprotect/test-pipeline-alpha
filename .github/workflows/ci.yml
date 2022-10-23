@@ -37,8 +37,8 @@ jobs:
       # DEBUG
       - name: Run a one-line script
         run: ls -alh
-      - name: Cat out results
-        run: cat trivy-results.json
+      - name: Print working directory
+        run: pwd
         
   jira-reporting:
     needs: vuln-scan
