@@ -35,3 +35,4 @@ jobs:
         with:
           scan-type: 'config'
           scan-ref: '.'
+          trivy-config: trivy.yaml
