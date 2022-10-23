@@ -37,8 +37,8 @@ jobs:
       # DEBUG
       - name: Run a one-line script
         run: ls -alh
-      - name: Print working directory
-        run: pwd
+      - name: Dump out sarif file contents
+        run: cat trivy-results.sarif
       - name: Upload Trivy Image scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
