@@ -39,4 +39,4 @@ jobs:
           
       # Jira Vuln Management Reporting
       - name: Report vulns to Jira
-        uses: breaktoprotect/jira-vuln-mgmt/reporting-workflow.yaml@main
+        uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
