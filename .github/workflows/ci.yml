@@ -32,7 +32,7 @@ jobs:
           scan-type: 'config'
           scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
-          format: 'json'
+          format: 'github'
           output: 'trivy-results.json'
       # DEBUG
       - name: Run a one-line script
