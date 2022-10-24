@@ -19,7 +19,11 @@ jobs:
   vuln-scan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.trivy-results.outputs.data }}
+      
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -42,8 +46,8 @@ jobs:
       - id: trivy-results
         name: Save contents of trivy-results.sarif 
         run:
-          results=$(cat trivy-results.sarif)
-          echo ""::set-output name=data::$results
+          results=$(cat trivy-results.sarif)  
+          echo "data=$results" >> $GITHUB_OUTPUT
         
   jira-reporting:
     needs: vuln-scan
