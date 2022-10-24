@@ -47,7 +47,7 @@ jobs:
         name: Save contents of trivy-results.sarif 
         run:
           #results=$(cat trivy-results.sarif)  
-          results=$(echo some lame stuff here)
+          results="test test test"
           echo "data=$results" >> $GITHUB_OUTPUT
         
   jira-reporting:
@@ -55,4 +55,4 @@ jobs:
     needs: vuln-scan
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
     with: 
-      trivy-results: ${{needs.vuln-scan.outputs.trivy_results}}
+      trivy-results: ${{ needs.vuln-scan.outputs.trivy_results }}
