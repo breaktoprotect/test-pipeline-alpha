@@ -22,7 +22,7 @@ jobs:
     
     # Map a step output to a job output
     outputs:
-      trivy_results: ${{ steps.trivy-results.outputs.data }}
+      trivy_results_artf_name: ${{ steps.trivy-results.outputs.data }}
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,14 +43,13 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
           category: 'config'
-      - id: trivy-results
-        name: Save contents of trivy-results.sarif 
-        run:
-          echo "data=$(cat trivy-results.sarif | jq -s -c)" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v3
+        with:
+          name: trivy-results
+          path: trivy-results.sarif
+          retention-days: 1
         
   jira-reporting:
     # Jira Vuln Management Reporting
     needs: vuln-scan
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
-    with: 
-      trivy-results: ${{ needs.vuln-scan.outputs.trivy_results }}
