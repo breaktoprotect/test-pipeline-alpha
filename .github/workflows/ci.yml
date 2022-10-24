@@ -34,16 +34,16 @@ jobs:
           trivy-config: trivy.yaml
           format: 'sarif'
           output: 'trivy-results.sarif'
-      # DEBUG
-      - name: Run a one-line script
-        run: ls -alh
-      - name: Dump out sarif file contents
-        run: cat trivy-results.sarif
       - name: Upload Trivy Image scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.sarif'
           category: 'config'
+      - id: trivy-results
+        name: Save contents of trivy-results.sarif 
+        run:
+          results=$(cat trivy-results.sarif)
+          echo ""::set-output name=data::$results
         
   jira-reporting:
     needs: vuln-scan
