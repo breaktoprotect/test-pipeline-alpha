@@ -48,4 +48,4 @@ jobs:
   jira-reporting:
     needs: vuln-scan
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
-      # Jira Vuln Management Reporting
+      # Jira Vuln Management Reportingg
