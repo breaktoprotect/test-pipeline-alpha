@@ -46,7 +46,7 @@ jobs:
       - id: trivy-results
         name: Save contents of trivy-results.sarif 
         run:
-          echo "data=$(cat trivy-results.sarif)" >> $GITHUB_OUTPUT
+          echo "data=$(cat trivy-results.sarif | jq -s -c)" >> $GITHUB_OUTPUT
         
   jira-reporting:
     # Jira Vuln Management Reporting
