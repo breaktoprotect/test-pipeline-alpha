@@ -16,13 +16,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  vuln-scan:
+  dockerfile-config-scan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     
     # Map a step output to a job output
-    outputs:
-      trivy_results_artf_name: ${{ steps.trivy-results.outputs.data }}
+    #outputs:
+    #  trivy_results_artf_name: ${{ steps.trivy-results.outputs.data }}
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,26 +30,49 @@ jobs:
       - uses: actions/checkout@v3
 
       # Trivy Config scan for Dockerfiles
-      - name: Run Trivy vulnerability scanner in config mode
+      - name: Run Trivy - Dockerfile configuration scan
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'config,image'
+          scan-type: 'config'
           scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
           format: 'sarif'
-          output: 'trivy-results.sarif'
+          output: 'trivy-dockerfile-config.sarif'
       - name: Upload Trivy Image scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: 'trivy-dockerfile-config.sarif'
           category: 'config'
       - uses: actions/upload-artifact@v3
         with:
           name: trivy-results
           path: trivy-results.sarif
-          retention-days: 1
+          retention-days: 30    
+  image-sca-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Trivy Image SCA scan
+      - name: Run Trivy - Image SCA scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'image'
+          scan-ref: '.'
+          trivy-config: trivy.yaml
+          format: 'sarif'
+          output: 'trivy-image-sca.sarif'
+      - name: Upload Trivy Image scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-image-sca.sarif'
+          category: 'image_sca'
+      
         
-  jira-reporting:
+    
+    
+        
+  #jira-reporting:
     # Jira Vuln Management Reporting
-    needs: vuln-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    #needs: dockerfile-config-scan
+    #uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
