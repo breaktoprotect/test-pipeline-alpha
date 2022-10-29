@@ -33,7 +33,6 @@ jobs:
       - name: Run Trivy vulnerability scanner in config mode
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'config'
           scan-ref: 'Dockerfile'
           trivy-config: trivy.yaml
           format: 'sarif'
