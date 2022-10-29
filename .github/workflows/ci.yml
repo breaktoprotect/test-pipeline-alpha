@@ -58,7 +58,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'image'
-          scan-ref: '.'
+          image-ref: 'alpine:3.11'
           trivy-config: trivy.yaml
           format: 'sarif'
           output: 'trivy-image-sca.sarif'
