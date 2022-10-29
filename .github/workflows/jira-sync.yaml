@@ -18,4 +18,4 @@ jobs:
           JIRA_USER: jeremyspk@gmail.com
           JIRA_PROJECT: SEC
           JIRA_ISSUE_TYPE: Security
-          #JIRA_WATCHERS: someuser@reload.dk,someotheruser@reload.dk
+          JIRA_WATCHERS: jeremyspk@gmail.com
