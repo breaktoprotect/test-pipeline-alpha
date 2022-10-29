@@ -12,8 +12,8 @@ jobs:
       - name: "Sync security alerts to Jira issues"
         uses: reload/github-security-jira@v1.x
         env:
-          GH_SECURITY_TOKEN: ${{ secrets.GitHubSecurityToken }}
-          JIRA_TOKEN: ${{ secrets.jira_access_token }}
+          GH_SECURITY_TOKEN: ${{ secrets.GITHUBSECURITYTOKEN }}
+          JIRA_TOKEN: ${{ secrets.JIRA_ACCESS_TOKEN }}
           JIRA_HOST: https://kongsengli.atlassian.net/
           JIRA_USER: jeremyspk@gmail.com
           JIRA_PROJECT: SEC
