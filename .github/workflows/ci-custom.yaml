@@ -42,4 +42,4 @@ jobs:
       - name: Report findings to VULN
         uses: breaktoprotect/jira-vuln-mgmt/blob/main/.github/workflows/reporting-workflow.yaml@main
         with:
-          - artifact-name: 'trivy-dockerfile-config.sarif'
+          artifact-name: 'trivy-dockerfile-config.sarif'
