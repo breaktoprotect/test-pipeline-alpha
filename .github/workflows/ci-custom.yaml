@@ -39,7 +39,8 @@ jobs:
           retention-days: 30
           
       # Use custom Jira vuln reporter
-      - name: Report findings to VULN
-        uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
-        with:
-          artifact-name: 'trivy-dockerfile-config.sarif'
+  report-vuln-findings-to-jira:
+    needs: dockerfile-config-scan
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    with:
+      artifact-name: 'trivy-dockerfile-config.sarif'
