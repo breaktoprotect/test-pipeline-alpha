@@ -38,7 +38,7 @@ jobs:
           path: trivy-dockerfile-config.sarif
           retention-days: 30
           
-      # Use custom Jira vuln reporter #
+      # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: dockerfile-config-scan
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
