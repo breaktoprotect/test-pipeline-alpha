@@ -23,7 +23,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'config'
-          scan-ref: '*Dockerfile'
+          scan-ref: './'
           trivy-config: trivy.yaml
           format: 'sarif'
           output: 'trivy-dockerfile-config.sarif'
