@@ -38,7 +38,7 @@ jobs:
       # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: dockerfile-config-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@feature/better_summary
     with:
       artifact-name: 'trivy-dockerfile-config.sarif'
     secrets:
