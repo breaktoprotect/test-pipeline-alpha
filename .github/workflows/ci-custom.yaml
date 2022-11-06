@@ -1,13 +1,10 @@
-name: CI with custom Jira Vuln reporting
+name: Scan Job - Trivy Docker Configuration Scan
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
 
-  # Allows you to run this workflow manually from the Actions tab
+  # For testing only - normal usage should be called by another workflow.
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -26,7 +23,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'config'
-          scan-ref: 'Dockerfile'
+          scan-ref: '*Dockerfile'
           trivy-config: trivy.yaml
           format: 'sarif'
           output: 'trivy-dockerfile-config.sarif'
