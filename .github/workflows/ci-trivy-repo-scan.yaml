@@ -1,4 +1,4 @@
-name: CI with custom Jira Vuln reporting
+name: CI with Trivy Repo Scan -> Jira Vuln Management
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
