@@ -44,6 +44,7 @@ jobs:
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
     with:
       artifact-name: 'trivy-repo-scan.sarif'
+      finding-source: "trivyRepoScan"
     secrets:
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
       env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
