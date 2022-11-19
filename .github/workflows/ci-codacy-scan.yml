@@ -43,7 +43,7 @@ jobs:
       # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: codacy-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@develop
     with:
       artifact-name: 'results.sarif'
       finding-source: "codacySAST"
