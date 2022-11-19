@@ -1,4 +1,4 @@
-//Credit: SnoopySecurity at https://github.com/snoopysecurity/Vulnerable-Code-Snippets/blob/master/SQL%20Injection/example.java
+# Credits: SecureFlag - https://knowledge-base.secureflag.com/vulnerabilities/sql_injection/sql_injection_python.html
 @app.route("/login")
 def login():
 
