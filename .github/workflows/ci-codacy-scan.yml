@@ -32,6 +32,9 @@ jobs:
           # Force 0 exit code to allow SARIF file generation
           # This will hand over control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
+      # Debug
+      - name: Debug - check for results.sarif
+        run: ls -alh
       # Upload artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v3
