@@ -46,7 +46,7 @@ jobs:
     uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
     with:
       artifact-name: 'results.sarif'
-      finding-source: "codacyScan"
+      finding-source: "codacySAST"
     secrets:
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
       env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
