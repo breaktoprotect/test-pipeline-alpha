@@ -1,0 +1,53 @@
+name: CI with Codacy Scan -> Jira Vuln Mgmt
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  codacy-scan:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Trivy Config scan for Dockerfiles
+      - name: Run Codacy SAST Scan
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          output: results.sarif
+          format: sarif
+          # Adjust severity of non-security issues
+          gh-code-scanning-compat: true
+          # Force 0 exit code to allow SARIF file generation
+          # This will hand over control about PR rejection to the GitHub side
+          max-allowed-issues: 2147483647
+      # Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: results.sarif
+          path: results.sarif
+          retention-days: 30
+         
+      # Use custom Jira vuln reporter
+  report-vuln-findings-to-jira:
+    needs: codacy-scan
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    with:
+      artifact-name: 'results.sarif'
+      finding-source: "codacyScan"
+      reporter-email: "jeremyspk@gmail.com"
+    secrets:
+      env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
+      env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
