@@ -1,5 +1,4 @@
 # FILE: .bandit
-[bandit]
-#exclude = tests,path/to/file
-tests = [B201,B301,B608]
-#skips = [B101,B601]
+exclude_dirs: ['tests']
+tests: [B201,B301,B608]
+#skips: [B101,B601]
