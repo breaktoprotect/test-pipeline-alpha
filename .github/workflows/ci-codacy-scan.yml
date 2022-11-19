@@ -25,6 +25,7 @@ jobs:
       - name: Run Codacy SAST Scan
         uses: codacy/codacy-analysis-cli-action@master
         with:
+          tool: bandit
           output: results.sarif
           format: sarif
           verbose: true
