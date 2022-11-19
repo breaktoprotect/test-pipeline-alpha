@@ -21,7 +21,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Trivy Config scan for Dockerfiles
+      # Configure codacy scanning parameters
       - name: Run Codacy SAST Scan
         uses: codacy/codacy-analysis-cli-action@master
         with:
