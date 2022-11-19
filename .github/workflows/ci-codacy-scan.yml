@@ -25,13 +25,18 @@ jobs:
       - name: Run Codacy SAST Scan
         uses: codacy/codacy-analysis-cli-action@master
         with:
+          tool: spotbugs
           output: results.sarif
           format: sarif
+          verbose: true
           # Adjust severity of non-security issues
           gh-code-scanning-compat: true
           # Force 0 exit code to allow SARIF file generation
           # This will hand over control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
+      # Debug
+      - name: Debug - check for results.sarif
+        run: ls -alh
       # Upload artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -43,10 +48,10 @@ jobs:
       # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: codacy-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@develop
     with:
       artifact-name: 'results.sarif'
-      finding-source: "codacyScan"
+      finding-source: "codacySAST"
     secrets:
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
       env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}

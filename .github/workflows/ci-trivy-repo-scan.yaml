@@ -2,10 +2,10 @@ name: CI with Trivy Repo Scan -> Jira Vuln Management
 
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -45,8 +45,7 @@ jobs:
     with:
       artifact-name: 'trivy-repo-scan.sarif'
       finding-source: "trivyRepoScan"
-      reporter-email: "jeremyspk@gmail.com"
     secrets:
+      reporter-email: "jeremyspk@gmail.com"
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
-      #env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
-      env-jira-access-token: "notExist123"
+      env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
