@@ -45,8 +45,7 @@ jobs:
     with:
       artifact-name: 'trivy-repo-scan.sarif'
       finding-source: "trivyRepoScan"
-      reporter-email: "jeremyspk@gmail.com"
     secrets:
+      reporter-email: "jeremyspk@gmail.com"
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
-      #env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
-      env-jira-access-token: "notExist123"
+      env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
