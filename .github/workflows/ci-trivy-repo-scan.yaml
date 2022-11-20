@@ -41,7 +41,7 @@ jobs:
     needs: trivy-config-scan
     runs-on: ubuntu-latest
     steps:
-      - uses: breaktoprotect/jira-vuln-mgmt@v0.2.6.7-beta
+      - uses: breaktoprotect/jira-vuln-mgmt@v0.2.7-beta
         with:
           artifact-name: 'trivy-config-scan.sarif'
           finding-source: "trivyConfigScan"
