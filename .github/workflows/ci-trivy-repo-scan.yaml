@@ -41,10 +41,10 @@ jobs:
       # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: trivy-repo-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@develop
+    uses: breaktoprotect/jira-vuln-mgmt@v1
     with:
       artifact-name: 'trivy-repo-scan.sarif'
-      finding-source: "trivyRepoScan"
+      finding-source: "trivyConfigScan"
     secrets:
       reporter-email: "jeremyspk@gmail.com"
       env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
