@@ -41,7 +41,7 @@ jobs:
       # Use custom Jira vuln reporter
   report-vuln-findings-to-jira:
     needs: trivy-repo-scan
-    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@main
+    uses: breaktoprotect/jira-vuln-mgmt/.github/workflows/reporting-workflow.yaml@develop
     with:
       artifact-name: 'trivy-repo-scan.sarif'
       finding-source: "trivyRepoScan"
