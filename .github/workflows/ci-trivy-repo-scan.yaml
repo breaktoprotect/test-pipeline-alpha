@@ -27,7 +27,7 @@ jobs:
           scan-type: 'config'
           trivy-config: trivy.yaml
           format: 'sarif'
-          output: 'trivy-repo-scan.sarif'
+          output: 'trivy-config-scan.sarif'
       # Upload artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v3
