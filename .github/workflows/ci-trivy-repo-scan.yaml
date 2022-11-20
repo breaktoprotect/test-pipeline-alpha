@@ -47,6 +47,7 @@ jobs:
         with:
           artifact-name: 'trivy-repo-scan.sarif'
           finding-source: "trivyConfigScan"
+          affected-component: test-pipeline-alpha
           reporter-email: "jeremyspk@gmail.com"
           env-api-host: ${{ secrets.JIRA_API_HOSTNAME }}
           env-jira-access-token: ${{ secrets.JIRA_ACCESS_TOKEN }}
